@@ -1,3 +1,4 @@
+
 <?php 
 $install = file_exists(__DIR__ . '/config/connect.php');
 
@@ -5,7 +6,7 @@ if ($install == false) {
 
     header("location:application/install/index.php");
 
-} else {
+} else {//checking 
 session_start();
 error_reporting(E_ALL);
 $day = date("d");
