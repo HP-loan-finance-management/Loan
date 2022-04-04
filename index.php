@@ -1,12 +1,12 @@
 
-<?php 
+<?php
 $install = file_exists(__DIR__ . '/config/connect.php');
 
 if ($install == false) {
 
     header("location:application/install/index.php");
 
-} else {//checking 
+} else {//checking
 session_start();
 error_reporting(E_ALL);
 $day = date("d");
@@ -18,7 +18,7 @@ if($day == $datein)
 include("application/alert_sender/sms_charges.php");
 }
 else{
-	//empty action arulmurugan auto
+	//empty action arulmurugan auto financee  adsdfsafsd,fn,sd 
 }
 include "config/connect.php";
 ?>
@@ -26,9 +26,9 @@ include "config/connect.php";
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  
-<?php 
+
+
+<?php
 $call = mysqli_query($link, "SELECT * FROM systemset");
 if(mysqli_num_rows($call) == 0)
 {
@@ -39,9 +39,9 @@ else
 while($row = mysqli_fetch_assoc($call)){
 ?>
 <title><?php echo $row ['title']?></title>
-<?php }}?>  
+<?php }}?>
 
-<?php 
+<?php
 $call = mysqli_query($link, "SELECT * FROM systemset");
 if(mysqli_num_rows($call) == 0)
 {
@@ -53,7 +53,7 @@ while($row = mysqli_fetch_assoc($call)){
 ?>
 
 <link href="img/<?php echo $row['image']; ?>" rel="icon" type="dist/img">
-<?php }}?> 
+<?php }}?>
 
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -84,7 +84,7 @@ while($row = mysqli_fetch_assoc($call)){
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-  <?php 
+  <?php
 $call = mysqli_query($link, "SELECT * FROM systemset");
 if(mysqli_num_rows($call) == 0)
 {
@@ -103,7 +103,7 @@ while($row = mysqli_fetch_assoc($call)){
     <p class="login-box-msg">Please sign in here</p>
 
     <form class="form"  method="post" enctype="multipart/form-data">
-	
+
       <div class="form-group has-feedback">
         <input name="username" type="text" class="form-control" placeholder="Username/Email Address" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -112,15 +112,15 @@ while($row = mysqli_fetch_assoc($call)){
         <input name="pass" type="password" class="form-control" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-	  
-	  	  
+
+
         <div align="right">
           <a href="forgetpassword.php"><button  type="button" class="btn btn-warning btn-flat"><i class="fa fa-mail-reply-all"></i>&nbsp;Forget Password&nbsp;?</button></a>
-		  <button name="submit" type="submit" class="btn btn-success btn-flat"><i class="fa fa-send"></i>&nbsp;Sign In</button> 
+		  <button name="submit" type="submit" class="btn btn-success btn-flat"><i class="fa fa-send"></i>&nbsp;Sign In</button>
         </div>
-		
+
 		<hr>
-		
+
 	  <div align="center">
 		  <table width="265" border="1">
             <tr>
@@ -149,38 +149,38 @@ while($row = mysqli_fetch_assoc($call)){
 		  <hr>
 	  </div>
 <?php
-//include("emailfunc.php");						
+//include("emailfunc.php");
 if(isset($_POST['submit']))
-{						
+{
 $username= mysqli_real_escape_string($link, $_POST['username']);
 $pass= mysqli_real_escape_string($link, $_POST['pass']);
 $encrypt = base64_encode($pass);
-		
+
 $query = mysqli_query($link, "SELECT * FROM user WHERE '$username' IN(email, username) AND password = '$encrypt'") or die(mysqli_error($link));
 $row = mysqli_fetch_array($query);
-$numberOfRows = mysqli_num_rows($query);																																					
-if ($numberOfRows == 0) 
+$numberOfRows = mysqli_num_rows($query);
+if ($numberOfRows == 0)
 {
   echo '<hr>';
   echo '<div class="alert alert-danger">Invalid Username or Password</div>';
   echo '<hr>';
-} 
+}
 else
 {
 //$sql = mysqli_query($link,"UPDATE user SET Signal='On' WHERE Email = '$email'") or die(mysqli_error($link));
 echo '<hr>';
 echo '<div class="alert alert-success">You have Successfully Login</div>';
 $_SESSION['tid'] = $row['id'];
-echo "<script>window.location='loader.php?tid=".$_SESSION['tid']."';</script>";												
-}							
+echo "<script>window.location='loader.php?tid=".$_SESSION['tid']."';</script>";
+}
 }
 
 ?>
-	  
-	  
+
+
     </form>
 
-    
+
     <!-- /.social-auth-links -->
 
 
