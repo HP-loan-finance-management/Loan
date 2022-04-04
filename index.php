@@ -18,7 +18,7 @@ if($day == $datein)
 include("application/alert_sender/sms_charges.php");
 }
 else{
-	//empty action
+	//empty action arulmurugan
 }
 include "config/connect.php";
 ?>
